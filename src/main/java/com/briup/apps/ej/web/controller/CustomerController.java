@@ -35,7 +35,7 @@ public class CustomerController {
         return MessageUtil.success("success",list);
     }
     @ApiOperation("保存（ID自动生成，请勿输入ID）或更新用户信息")
-    @GetMapping("saveOrUpdate")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(Customer customer) throws Exception{
             customerService.saveOrUpdate(customer);
             return MessageUtil.success("保存成功");

@@ -51,7 +51,7 @@ public class WaiterController {
     }
 
     @ApiOperation("（ID自动生成，请勿输入ID）录入或更改员工信息")
-    @GetMapping("saveOrUpdate")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(Waiter waiter) throws Exception{
         if(iWaiterService.saveOrUpdate(waiter)==1)
             return MessageUtil.success("成功",waiter);

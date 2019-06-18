@@ -6,10 +6,13 @@ import io.swagger.annotations.ApiParam;
 import java.util.List;
 
 public class OrderAndOrderLineVM {
+
     @ApiParam(value = "顾客ID",required = true)
     private Long customerId;
+
     @ApiParam(value = "服务地址ID",required = true)
     private Long addressId;
+
     private List<OrderLine> orderLines;
 
     public Long getCustomerId() {

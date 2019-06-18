@@ -14,6 +14,7 @@ public class ProductServiceImpl implements IProductService{
     @Resource
     private ProductMapper productMapper;
 
+
     @Override
     public List<Product> findAll(){
         ProductExample example = new ProductExample();
@@ -54,8 +55,10 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public void batchDelete(Long[] ids) throws Exception {
-        for (long id : ids)
+        for (long id : ids){
             productMapper.deleteByPrimaryKey(id);
+        }
     }
+
 
 }

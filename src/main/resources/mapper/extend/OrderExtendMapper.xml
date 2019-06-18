@@ -32,7 +32,7 @@
         <result column="orderTime"  property="orderTime" />
     </resultMap>
 
-    <!--id,orderTime,total,cutomer_id,waiter_id,address_id-->
+    <!--id,orderTime,total,customer_id,waiter_id,address_id-->
     <select id="query" resultMap="orderExtendResultMap">
         select
         o.id as o_id,

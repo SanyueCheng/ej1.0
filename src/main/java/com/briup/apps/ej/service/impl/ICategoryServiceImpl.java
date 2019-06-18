@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ICategoryServiceImpl implements ICategoryService {
@@ -41,7 +42,7 @@ public class ICategoryServiceImpl implements ICategoryService {
         Category category = categoryMapper.selectByPrimaryKey(id);
 
         if (category == null) {
-            throw new Exception("要删除的用户不存在");
+            throw new Exception("要删除的分类不存在");
         } else {
             return categoryMapper.deleteByPrimaryKey(id);
         }
