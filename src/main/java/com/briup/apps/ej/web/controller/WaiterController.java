@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,4 +58,22 @@ public class WaiterController {
         else
             return MessageUtil.error("失败");
     }
+    @ApiOperation("批量删除（数据用“,”隔开）")
+    @PostMapping("batchDelete")
+    public Message batchDelete(Long[] ids) throws Exception{
+        iWaiterService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
+    }
+
+    @ApiOperation("通过ID查找员工信息")
+    @GetMapping("selectById")
+    public Message selectById(long id){
+        Waiter waiter= iWaiterService.selectById(id);
+        if(waiter==null)
+            return MessageUtil.error("用户不存在");
+        else{
+            return MessageUtil.success("查找成功",waiter);
+        }
+    }
+
 }

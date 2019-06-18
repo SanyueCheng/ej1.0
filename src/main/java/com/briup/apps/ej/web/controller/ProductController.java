@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.misc.MessageUtils;
@@ -47,12 +48,18 @@ public class ProductController {
     @ApiOperation("通过ID查找产品信息")
     @GetMapping("selectById")
     public Message selectById(Long id){
-        if(id==null)
+        Product product = productService.selectById(id);
+        if(product ==null)
             return MessageUtil.error("该产品不存在");
         else{
-            Product product = productService.selectById(id);
             return MessageUtil.success("查找产品成功",product);
         }
+    }
+    @ApiOperation("批量删除（数据用“,”隔开）")
+    @PostMapping("batchDelete")
+    public Message batchDelete(Long[] ids) throws Exception{
+        productService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 
 }
