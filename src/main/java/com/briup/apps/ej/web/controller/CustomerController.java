@@ -1,6 +1,8 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.bean.VM.CustomerDetailsVM;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -19,6 +21,21 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
+    @GetMapping("queryAll")
+    @ApiOperation("查询客户信息，返回列表数据")
+    public Message queryAll(Long customerId,Long waiterId){
+        List<CustomerExtend> list = customerService.queryAll(customerId,waiterId);
+        return MessageUtil.success("success",list);
+    }
+
+    @GetMapping("queryDetails")
+    @ApiOperation("查询订单信息，并且订单级联关键的属性")
+    public Message queryDetails(Long customerId,Long waiterId){
+        List<CustomerDetailsVM> list = customerService.queryDetails(customerId,waiterId);
+        return MessageUtil.success("success",list);
+    }
+
+
     @ApiOperation("模糊查询")
     @GetMapping("query")
     public Message query(Customer customer){

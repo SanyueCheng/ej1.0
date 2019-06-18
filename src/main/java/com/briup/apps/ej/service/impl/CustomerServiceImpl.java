@@ -1,19 +1,38 @@
 package com.briup.apps.ej.service.impl;
 
+import com.briup.apps.ej.bean.OrderLine;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
+import com.briup.apps.ej.bean.VM.CustomerDetailsVM;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import com.briup.apps.ej.dao.CustomerMapper;
+import com.briup.apps.ej.dao.extend.CustomerExtendMapper;
+
 import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
+import com.briup.apps.ej.dao.extend.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Date;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
     @Resource
     private CustomerMapper customerMapper;
+    @Resource
+    private CustomerExtendMapper customerExtendMapper;
 
+
+    @Override
+    public List<CustomerDetailsVM> queryDetails(Long  customerId, Long waiterId){
+        return customerExtendMapper.queryDetails(customerId,waiterId);
+    }
+
+    @Override
+    public List<CustomerExtend> queryAll(Long customerId, Long waiterId){
+        return customerExtendMapper.queryAll(customerId,waiterId);
+    }
 
     @Override
     public List<Customer> findAll() {
